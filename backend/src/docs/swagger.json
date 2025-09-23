@@ -1,0 +1,143 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "User Management API",
+    "version": "1.0.0",
+    "description": "API untuk manajemen pengguna dengan validasi dan error handling"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "summary": "Ambil semua pengguna",
+        "responses": {
+          "200": {
+            "description": "Daftar pengguna"
+          }
+        }
+      },
+      "post": {
+        "summary": "Tambah pengguna baru",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Pengguna berhasil ditambahkan"
+          },
+          "400": {
+            "description": "Validasi gagal"
+          },
+          "409": {
+            "description": "Email sudah digunakan"
+          }
+        }
+      }
+    },
+    "/users/email": {
+      "get": {
+        "summary": "Cari pengguna berdasarkan email",
+        "parameters": [
+          {
+            "name": "value",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "email"
+            },
+            "description": "Email pengguna yang ingin dicari"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data pengguna ditemukan"
+          },
+          "404": {
+            "description": "Pengguna tidak ditemukan"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "put": {
+        "summary": "Update pengguna",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Pengguna berhasil diperbarui"
+          },
+          "404": {
+            "description": "Pengguna tidak ditemukan"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Hapus pengguna",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pengguna berhasil dihapus"
+          },
+          "404": {
+            "description": "Pengguna tidak ditemukan"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "nama": { "type": "string" },
+          "email": { "type": "string", "format": "email" },
+          "nomorTelepon": { "type": "string", "minLength": 10 },
+          "statusAktif": { "type": "boolean" },
+          "departemen": { "type": "string" }
+        },
+        "required": ["nama", "email", "nomorTelepon", "statusAktif", "departemen"]
+      }
+    }
+  }
+}
