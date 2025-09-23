@@ -57,6 +57,7 @@ export default function UserList() {
             <table className="table">
               <thead>
                 <tr>
+                  <th>No</th>
                   <th>Nama</th>
                   <th>Email</th>
                   <th>Nomor Telepon</th>
@@ -67,8 +68,9 @@ export default function UserList() {
               </thead>
 
               <tbody>
-                {users.map((user) => (
+                {users.map((user, index) => (
                   <tr key={user.id}>
+                    <td>{index + 1}</td>
                     <td>{user.nama}</td>
                     <td>{user.email}</td>
                     <td>{user.nomorTelepon}</td>
