@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router";
 import PageLayout from "./components/PageLayout";
 import Home from "./pages/Home";
-import AddUser from "./pages/addUser";
+import AddUser from "./pages/AddUser";
 import UserList from "./pages/UserList";
 
 export default function App() {
