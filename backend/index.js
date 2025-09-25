@@ -14,7 +14,8 @@ const port = process.env.PORT;
 
 app.use(cors({
     origin: 'https://user-management-app-chirzin.vercel.app/',
-    credentials: false
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
 }));
 
 app.use(express.json());
