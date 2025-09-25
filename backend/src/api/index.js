@@ -3,7 +3,7 @@ import userRoute from "../routes/userRoute.js";
 import errorHandler from "../middlewares/errorHandler.js";
 import { testDBConnection } from '../config/db.js';
 import swaggerUi from 'swagger-ui-express';
-import swaggerDoc from '../docs/swagger.json' assert { type: 'json' };
+import swaggerDoc from '../docs/swagger.json' with { type: 'json' };
 import dotenv from 'dotenv';
 import cors from 'cors';
 
