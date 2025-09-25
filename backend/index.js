@@ -13,7 +13,7 @@ const app = express();
 const port = process.env.PORT;
 
 app.use(cors({
-    origin: 'https://user-management-app-chirzin.vercel.app/',
+    origin: 'https://user-management-app-chirzin.vercel.app',
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
