@@ -11,12 +11,17 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT;
+const env = process.env.NODE_ENV || "development";
 
-app.use(cors({
-    origin: 'https://user-management-app-chirzin.vercel.app',
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
-}));
+if (env === "development") {
+    app.use(cors());
+} else {
+    app.use(cors({
+        origin: "https://user-management-app-chirzin.vercel.app",
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        credentials: true
+    }));
+}
 
 app.use(express.json());
 
