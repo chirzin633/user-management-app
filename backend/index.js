@@ -1,15 +1,16 @@
 import express from 'express';
-import userRoute from "../routes/userRoute.js";
-import errorHandler from "../middlewares/errorHandler.js";
-import { testDBConnection } from '../config/db.js';
+import userRoute from "./src/routes/userRoute.js";
+import errorHandler from "./src/middlewares/errorHandler.js";
+import { testDBConnection } from './src/config/db.js';
 import swaggerUi from 'swagger-ui-express';
-import swaggerDoc from '../docs/swagger.json' with { type: 'json' };
+import swaggerDoc from './src/docs/swagger.json' with { type: 'json' };
 import dotenv from 'dotenv';
 import cors from 'cors';
 
 dotenv.config();
 
 const app = express();
+const port = process.env.PORT;
 
 app.use(cors({
     origin: 'http://localhost:5173',
@@ -29,6 +30,7 @@ app.use(errorHandler);
 
 export default app;
 
-testDBConnection().catch(err => {
-    console.error("DB connection failed: ", err);
-})
+app.listen(port, async () => {
+    console.log(`API running on port ${port}`);
+    await testDBConnection();
+});
