@@ -44,6 +44,18 @@ Contoh isi file .env
 VITE_API_URL=http://localhost:3000/api
 ```
 
+### ☁️ Deploy Project
+
+```
+https://user-management-app-chirzin.vercel.app/
+```
+
+### ✅ Ringkasan
+
+- Jalankan lokal: npm run dev di backend & frontend
+- Deploy Frontend : https://user-management-app-chirzin.vercel.app/
+- Deploy Backend : https://user-management-server-rho-nine.vercel.app/
+
 ## 🧩 Features
 
 #### ✅ Frontend (React + TailwindCSS + DaisyUI)
