@@ -35,10 +35,10 @@ export default function EditUserForm(props) {
       }, 1000);
     } catch (err) {
       setSuccess(false);
-      const errorMessage = err?.response?.data?.message || "Gagal mengupdate user";
+      const errorMessage = Array.isArray(err?.response?.data?.errors) ? err.response.data.errors.join(", ") : err?.response?.data?.message || "Gagal mengupdate user";
       setError(errorMessage);
     } finally {
-      setLoading(true);
+      setLoading(false);
     }
   }
 
@@ -47,6 +47,7 @@ export default function EditUserForm(props) {
       <div className="modal-box">
         <h3 className="font-bold text-lg mb-5">Edit Pengguna</h3>
 
+        {loading && <span className="loading loading-spinner loading-md"></span>}
         {error && <div className="alert alert-error mb-2">{error}</div>}
         {success && <div className="alert alert-success mb-2">Data berhasil diupdate!</div>}
 

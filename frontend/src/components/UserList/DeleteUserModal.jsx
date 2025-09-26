@@ -24,6 +24,7 @@ export default function DeleteUserModal(props) {
     } catch (err) {
       setSuccess(false);
       const errorMessage = err?.response?.data?.message || "Gagal menghapus user";
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }

@@ -26,7 +26,8 @@ export default function AddUser() {
       setOk("Pengguna berhasil ditambahkan!");
       setTimeout(() => navigate("/users"), 1500);
     } catch (err) {
-      setErr(err?.response?.data?.message || "Gagal menambahkan pengguna!");
+      const errorMessage = Array.isArray(err?.response?.data?.errors) ? err.response.data.errors.join(", ") : err?.response?.data?.message || "Gagal menambahkan pengguna!";
+      setErr(errorMessage);
     } finally {
       setLoading(false);
     }
